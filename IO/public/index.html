@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>LearnReact!</title>
+    <!-- Here we include bootstrap and font-awesome. These will be made available to all of the generated HTML/JS that React generates-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/paper/bootstrap.css">
+    <!-- <link rel="stylesheet" href="/css/style.css"> -->
+</head>
+
+<body>
+    <!-- This is where React will deploy the contents it generates -->
+    <div id="app"></div>
+    <!-- All of our JS code will be transpiled into this bundle.js file -->
+    <script src="bundle.js"></script>
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script>
+    <script src="lib/jquery-2.1.3.min.js"></script>
+    <script src="lib/jquery.xmldom.js"></script>
+    <script src="lib/jquery.mockjax.js"></script>
+    <script src="lib/async.js"></script>
+    <!-- Helpers -->
+    <script src="helpers.js"></script>
+    <!-- START ARTOO IMPORTS -->
+    <script src="src/artoo.js"></script>
+    <script src="src/third_party/emmett.js"></script>
+    <script src="src/third_party/jquery.simulate.js"></script>
+    <script src="src/artoo.beep.js"></script>
+    <script src="src/artoo.settings.js"></script>
+    <script src="src/artoo.helpers.js"></script>
+    <script src="src/artoo.parsers.js"></script>
+    <script src="src/artoo.writers.js"></script>
+    <script src="src/artoo.browser.js"></script>
+    <script src="src/artoo.log.js"></script>
+    <script src="src/artoo.dependencies.js"></script>
+    <script src="src/artoo.countermeasures.js"></script>
+    <script src="src/methods/artoo.methods.ajaxSniffer.js"></script>
+    <script src="src/methods/artoo.methods.ajaxSpider.js"></script>
+    <script src="src/methods/artoo.methods.autoExpand.js"></script>
+    <script src="src/methods/artoo.methods.autoScroll.js"></script>
+    <!--     <script src="src/methods/artoo.methods.cookies.js"></script>
+    <script src="src/methods/artoo.methods.save.js"></script> -->
+    <script src="src/methods/artoo.methods.scrape.js"></script>
+    <script type="text/javascript">
+    //    var socket = io();
+    //    socket.on('news', function(data) {
+    //        console.log(data);
+    //        socket.emit('my other event', {
+    //            my: 'data'
+    //        });
+    //    });
+    //    $('#save').click( e => socket.emit('event') );
+    // socket.on('event', data => alert("New article saved!") );
+    artoo.on('ready', function() {
+        artoo.ajaxSpider([
+            'https://en.wikipedia.org/wiki/Auriscalpium_vulgare'
+        ], {
+            scrape: {
+                iterator: "a",
+                data: "href",
+                method: "getJSON",
+                dataType: "json"
+            }
+        }, function(data) {
+            console.log("Retrieved Data", data)
+        });
+    });
+    </script>
+    <script src="src/artoo.init.js"></script>
+</body>
+
+</html>
